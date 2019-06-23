@@ -1,0 +1,30 @@
+extends ../layout/default
+
+mixin newsBlock(news)
+  .news-container
+    .news-preview
+      a(href="/post?id=" + news._id)
+        img(src="uploads/" + news.preview)
+    .news-description
+      .news-description__title
+        a(href="/post?id=" + news._id)
+          h4= news.title
+      .news-description__text
+        p= news.text
+      .news-description__meta
+        .author
+          span= 'Root'
+        .date
+          span= new Date(news.created).getDate() + '.' + (new Date(news.created).getMonth() + 1) + '.' + new Date(news.created).getFullYear()
+
+block content
+  main#main.row
+    each news in mainNews
+      section.columns.small-12.medium-4.large-3
+        +newsBlock(news)
+    -
+      var goToPage = function(page_number) {
+        return '/' + tagPageName + '?page=' + page_number;
+      }
+    article.pagination-container.expanded.column
+      +pagination(postsPagesCount || 1, currentPage || 1, goToPage)

@@ -1,0 +1,15 @@
+#header
+  .site-text-logo
+    include ../components/intro
+  .top-navigation
+    nav.top-bar
+      .top-bar-left
+        include ../components/navbar
+      .top-bar-right
+        .button-group
+          if (admin)
+            include ../modules/registrate-button
+          if (!admin)
+            include ../modules/login-button
+          else
+            include ../modules/logout-button

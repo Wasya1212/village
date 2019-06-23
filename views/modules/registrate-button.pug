@@ -1,0 +1,13 @@
+a.button.tiny(data-toggle="create_user") Рeєстрація нового користувача
+
+.dropdown-pane(data-dropdown, data-auto-focus="true")#create_user
+  h5 Введіть ім'я та пароль нового користувача
+  form#createUserForm
+    p
+      label(for="create_user_username_input") Ім'я користувача
+      input(type="text", required, placeholder="Введіть ім'я користувача", name="username", autocomplete="off")#create_user_username_input
+    p
+      label(for="create_user_password_input") Пароль
+      input(type="password", required, name="password", placeholder="Введіть парорль ", autocomplete="off")#create_user_password_input
+    p
+      input.button.warning(type="submit", value="Підтвердити")

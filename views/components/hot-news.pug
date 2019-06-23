@@ -1,0 +1,6 @@
+aside.large-3.column.show-for-large#posts-navigation
+  h2 Останні
+  ul.news-list
+    each post in hotPosts
+      a(href="/post?id=" + post._id)
+        li= post.title

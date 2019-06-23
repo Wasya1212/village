@@ -1,0 +1,32 @@
+extends ../layout/default
+
+block common
+    script(src="javascripts/post.js")
+
+block additional
+    script(src="javascripts/post.js")
+
+block content
+  main#main.expanded.row
+    include ../components/hot-news
+    article.small-12.medium-9.large-7.column#mainPost
+      .main-post-preview
+        img(src="uploads/" + post.preview)
+      .main-title-box
+        h3= post.title
+      hr
+      .main-description-box
+        p.description.clearfix= post.text
+        .additional-description
+          if (post.links.length > 0)
+            ol.post-links Додаткові посилання:
+              each link in post.links
+                li
+                  a(href=link)= link
+          .post-authors
+            strong Створено завдяки
+            span= sender.nickname
+            each author in post.authors
+              span= author
+    include ../components/small-news
+    script(type="text/javascript") changeDescription('#{post._id}');

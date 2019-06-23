@@ -1,0 +1,27 @@
+extends ../layout/default
+    
+block content
+  main#main.expanded.row
+    if (admin)
+      .expanded.button.create-post-btn(type="button", onclick="createPost();") Додати оголошення
+    include ../components/hot-news
+    section.small-12.medium-9.large-7.column#posts_container
+      each post in mainPosts
+        if (post.size == 'normal')
+          +normalPost(post)
+        if (post.size == 'large')
+          +largePost(post)
+        if (post.size == 'expanded')
+          +expandedPost(post)
+      article.pagination-container.expanded.column
+        -
+          var goToPage = function(page_number) {
+            return '/feed?page=' + page_number;
+          }
+        +pagination(postsPagesCount || 1, currentPage || 1, goToPage)
+    include ../components/small-news
+        
+    .reveal(data-reveal)#reveal
+      button.close-button(data-close, aria-label="Close modal", type="button")
+        span(aria-hidden="true") &times;
+      +writePostModal()

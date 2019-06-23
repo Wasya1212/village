@@ -1,0 +1,82 @@
+mixin buildingsFilter()
+  .column.row
+    form#searchBuildingForm
+      h3 Фільтр
+      p
+        input(type="text", name="village", placeholder="селище")
+      p
+        input(type="text", name="street", placeholder="вулиця")
+      p
+        input(type="number", name="number", placeholder="номер будинку")
+      section.expanded.row
+        h5 Загальна площа (м<sup>2</sup>)
+        .column
+          .slider(data-slider, data-initial-start="0", data-initial-end="100000", data-end="100000")
+            span.slider-handle(data-slider-handle, role="slider", tabindex="1", aria-controls="allAreaFrom")
+            span.slider-fill(data-slider-fill)
+            span.slider-handle(data-slider-handle, role="slider", tabindex="1", aria-controls="allAreaTo")
+        .small-5.medium-5.large-5.column
+          input(type="number", name="allAreaFrom")#allAreaFrom
+        .small-5.medium-5.large-5.column
+          input(type="number", name="allAreaTo")#allAreaTo
+      section.expanded.row
+        h5 Площа проживання (м<sup>2</sup>)
+        .column
+          .slider(data-slider, data-initial-start="0", data-initial-end="10000", data-end="10000")
+            span.slider-handle(data-slider-handle, role="slider", tabindex="1", aria-controls="leavingAreaFrom")
+            span.slider-fill(data-slider-fill)
+            span.slider-handle(data-slider-handle, role="slider", tabindex="1", aria-controls="leavingAreaTo")
+        .small-5.medium-5.large-5.column
+          input(type="number", name="leavingAreaFrom")#leavingAreaFrom
+        .small-5.medium-5.large-5.column
+          input(type="number", name="leavingAreaTo")#leavingAreaTo
+      section.expanded.row
+        h5 Площа для сільського господарства (м<sup>2</sup>)
+        .column
+          .slider(data-slider, data-initial-start="0", data-initial-end="10000", data-end="10000")
+            span.slider-handle(data-slider-handle, role="slider", tabindex="1", aria-controls="sgAreaFrom")
+            span.slider-fill(data-slider-fill)
+            span.slider-handle(data-slider-handle, role="slider", tabindex="1", aria-controls="sgAreaTo")
+        .small-5.medium-5.large-5.column
+          input(type="number", name="sgAreaFrom")#sgAreaFrom
+        .small-5.medium-5.large-5.column
+          input(type="number", name="sgAreaTo")#sgAreaTo
+      section.expanded.row
+        h5 Площа для бізнесу (м<sup>2</sup>)
+        .column
+          .slider(data-slider, data-initial-start="0", data-initial-end="10000", data-end="10000")
+            span.slider-handle(data-slider-handle, role="slider", tabindex="1", aria-controls="businessAreaFrom")
+            span.slider-fill(data-slider-fill)
+            span.slider-handle(data-slider-handle, role="slider", tabindex="1", aria-controls="businessAreaTo")
+        .small-5.medium-5.large-5.column
+          input(type="number", name="businessAreaFrom")#businessAreaFrom
+        .small-5.medium-5.large-5.column
+          input(type="number", name="businessAreaTo")#businessAreaTo
+      section.expanded.row
+        h5 Площа під ліс (м<sup>2</sup>)
+        .column
+          .slider(data-slider, data-initial-start="0", data-initial-end="10000", data-end="10000")
+            span.slider-handle(data-slider-handle, role="slider", tabindex="1", aria-controls="forestAreaFrom")
+            span.slider-fill(data-slider-fill)
+            span.slider-handle(data-slider-handle, role="slider", tabindex="1", aria-controls="forestAreaTo")
+        .small-5.medium-5.large-5.column
+          input(type="number", name="forestAreaFrom")#forestAreaFrom
+        .small-5.medium-5.large-5.column
+          input(type="number", name="forestAreaTo")#forestAreaTo
+      section.expanded.row
+        h5 Кількість жильців (шт)
+        .column
+          .slider(data-slider, data-initial-start="0", data-initial-end="55", data-end="200")
+            span.slider-handle(data-slider-handle, role="slider", tabindex="1", aria-controls="leavers")
+            span.slider-fill(data-slider-fill)
+        .small-5.medium-5.large-5.column
+          input(type="number", name="leavers")#leavers
+      section.expanded.row
+        h5 Кількість власників (шт)
+        .column
+          .slider(data-slider, data-initial-start="0", data-initial-end="1", data-end="10")
+            span.slider-handle(data-slider-handle, role="slider", tabindex="1", aria-controls="owners")
+            span.slider-fill(data-slider-fill)
+        .small-5.medium-5.large-5.column
+          input(type="number", name="owners")#owners
+      input.expanded.button.success(type="submit", value="Почати пошук")

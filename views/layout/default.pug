@@ -1,0 +1,27 @@
+html
+  head
+    include ../partials/head
+    // JQuery
+    script(src="libs/jquery/jquery.min.js") 
+    // Foudation
+    link(rel="stylesheet" href="libs/Foundation/css/foundation.css")
+    link(rel="stylesheet" href="libs/Foundation/css/app.css")
+    link(rel="stylesheet", href="libs/Foundation/foundation-icons/foundation-icons.css")
+    link(rel="stylesheet", href="stylesheets/main.css")
+    block additional
+  body
+    include ../mixins/index
+    include ../partials/header
+    
+    block content
+      
+    include ../partials/footer
+      
+    // Foundation
+    script(src="libs/Foundation/js/vendor/what-input.js")
+    script(src="libs/Foundation/js/vendor/foundation.min.js")
+    script(src="libs/Foundation/js/app.js")
+    // common script
+    script(src="javascripts/index.js")
+    
+    block common

@@ -1,0 +1,91 @@
+extends ../layout/default
+
+block common
+  script.
+    function getQueryVariable(variable) {
+      var query = window.location.search.substring(1);
+      var vars = query.split("&");
+      for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) {
+            return pair[1];
+        }
+      } 
+      alert('Query Variable ' + variable + ' not found');
+    }
+  script(src="javascripts/add.js")
+
+block content
+  main#main.expanded.row
+    if (resident)
+      form.large-9.large-centered.clearfix#editResidentForm
+        p.photo-box.clearfix
+          img.thumbnail(src="uploads/" + resident.avatar).float-center
+          label.expanded.large.button(for="picture_upload") Завантажити фотографію
+          input.show-for-sr(type="file")#picture_upload
+        p
+          input(type="text", name="fName", placeholder="Ім'я", value= resident.name.fName || '')
+          input(type="text", name="mName", placeholder="По батькові", value= resident.name.mName || '')
+          input(type="text", name="lName", placeholder="Прізвище", value= resident.name.lName || '')
+        p
+          fieldset#conviction
+            legend Судимість:
+              p
+                if (resident.conviction && resident.conviction.status == true)
+                  input(type="radio", name="conviction" value="yes", checked)#confirm_conviction
+                else
+                  input(type="radio", name="conviction" value="yes")#confirm_conviction
+                label(for="confirm_conviction") Так
+                if (resident.conviction && resident.conviction.status == false)
+                  input(type="radio", name="conviction", value="no", checked)#cancel_conviction
+                else
+                  input(type="radio", name="conviction", value="no")#cancel_conviction
+                label(for="cancel_conviction") Ні
+          if (resident.conviction && resident.conviction.description)
+            textarea(placeholder="Опис злочинів", name="convictionInfo", rows="5", value= resident.conviction.description)#conviction_info
+          else
+            textarea(placeholder="Опис злочинів", name="convictionInfo", rows="5")#conviction_info
+        p
+          label(for="work") Робота
+          input(type="text", name="work", placeholder="компанія:___; адреса:___; ...", value= resident.work)#work
+        p
+          label(for="study") Study
+          input(type="text", name="study", placeholder="школа:___; стан:___; досягнення:___; ...", value= resident.study)#study
+        p
+          label(for="passport") Паспортні дані
+          input(type="text", name="passport", placeholder="1A23BC4D5678EF", value= resident.passport)#passport
+        p
+          button.button.success.float-right(type="submit", onclick="editInfo($('#editResidentForm'), '" + resident._id + "');") Підтвердити
+    else
+      form.large-9.large-centered.clearfix#addResidentForm
+        p.photo-box.clearfix
+          img.thumbnail(src="http://placehold.it/250x250?text=Avatar image").float-center
+          label.expanded.large.button(for="picture_upload") Завантажити фотографію
+          input.show-for-sr(type="file")#picture_upload
+        p
+          input(type="text", name="fName", placeholder="Ім'я")
+          input(type="text", name="mName", placeholder="По батькові")
+          input(type="text", name="lName", placeholder="Прізвище")
+        p
+          label(for="birth") Дата народження
+          input(type="date", name="birth")#birth
+        p
+          fieldset#conviction
+            legend Судимість:
+              p
+                input(type="radio", name="conviction" value="yes")#confirm_conviction
+                label(for="confirm_conviction") Так
+                input(type="radio", name="conviction", value="no", checked)#cancel_conviction
+                label(for="cancel_conviction") Ні
+          textarea(placeholder="Опис злочинів", name="convictionInfo", rows="5")#conviction_info
+        p
+          label(for="work") Робота
+          input(type="text", name="work", placeholder="посада:___; компанія:___; адреса:___; ...")#work
+        p
+          label(for="study") Освіта
+          input(type="text", name="study", placeholder="рівень:___; спеціальність:___; Навчальні заклади:___; ...")#study
+        p
+          label(for="passport") Серійний номер паспорту
+          input(type="text", name="passport", placeholder="1A23BC4D5678EF")#passport
+        p
+          button.button.success.float-right(type="submit", onclick="addResident($('#addResidentForm'), getQueryVariable('buldId'))") Оформити нового жителя

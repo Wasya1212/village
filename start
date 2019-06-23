@@ -1,0 +1,34 @@
+// for database
+mongod --repair
+mongod --bind_ip=$IP --nojournal
+
+// for server
+nvm install 7.10
+node server
+
+// delete data
+akira1212:~/workspace/Diplom $ mongo
+MongoDB shell version: 2.6.12
+connecting to: test
+> show dbs // show databeses
+admin   (empty)
+diplom  0.078GB
+local   0.078GB
+> use diplom // use some database
+switched to db diplom
+> show coolections // show cuurent database collections
+2017-06-21T06:59:46.358+0000 don't know how to show [coolections] at src/mongo/shell/utils.js:729
+> show collections // show cuurent database collections
+buildings
+posts
+residents
+sessions
+system.indexes
+users
+> db.posts.drop() // clear collection
+true
+> db.residents.drop()
+true
+> db.buildings.drop()
+true
+> 

@@ -1,0 +1,16 @@
+extends ../layout/default
+    
+block common
+    script(src="javascripts/add.js")
+    
+block content
+  main#main.expanded.row
+    form.large-9.large-centered.clearfix#addBuildingForm
+      input(type="text", name="settlement", placeholder="Населений пункт")#last_settlement_input
+      input(type="text", name="street", placeholder="Вулиця")#last_street_input
+      input(type="number", name="number_h", placeholder="Порядковий номер")#last_number_h_input
+      input(type="number", name="area_h", placeholder="Площа під житло")#last_area_h_input
+      input(type="number", name="area_b", placeholder="Площа під підприємнецьку діяльність")#last_area_b_input
+      input(type="number", name="area_zm", placeholder="Площа під землеробство")#last_area_zm_input
+      input(type="number", name="area_l", placeholder="Площа займана лісом")#last_area_l_input
+      input.button.success.float-right(type="submit", value="Оформити новий будинок")

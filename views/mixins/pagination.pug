@@ -1,0 +1,72 @@
+-
+  var max_pagination_pages_count = 10;
+
+mixin paginationNext(pages_count, current_page, get_page_link_func)
+  if (current_page == pages_count)
+    li.pagination-next.disabled Наступна  
+  else
+    li.pagination-next
+      a(href= get_page_link_func(Number.parseInt(current_page) + 1), aria-label="Next page") Наступна
+
+mixin paginationPrevious(pages_count, current_page, get_page_link_func)
+  if (current_page == 1)
+    li.pagination-previous.disabled Попередня
+  else
+    li.pagination-previous
+      a(href= get_page_link_func(Number.parseInt(current_page) - 1), aria-label="Previous page") Попередня
+
+mixin paginationCurrent(pageNumber)
+  li.current
+    span.show-for-sr ви на сторінці
+    | #{pageNumber}
+
+mixin paginationPage(pageNumber, getPageLinkFunc)
+  li
+    a(href= getPageLinkFunc(pageNumber), aria-label="Page #{pageNumber}")= pageNumber
+
+mixin paginationEllipsis()
+  li.ellipsis
+
+mixin pagination(pages_count, current_page, get_page_link_func)
+  nav(aria-label="Pagination")
+    ul.pagination.text-center
+      +paginationPrevious(pages_count, current_page, get_page_link_func)
+      if (pages_count > 0)
+        if (pages_count > max_pagination_pages_count)
+          if (current_page > pages_count - (max_pagination_pages_count / 2))
+            +paginationPage(1, get_page_link_func)
+            +paginationEllipsis()
+            - for (var i = pages_count - (max_pagination_pages_count - 2); i <= pages_count; i++)
+              if (i == current_page)
+                +paginationCurrent(i)
+              else
+                +paginationPage(i, get_page_link_func)
+          else
+            if (current_page <= max_pagination_pages_count / 2)
+              - for (var i = 1; i <= (max_pagination_pages_count - 2); i++)
+                if (i == current_page)
+                  +paginationCurrent(i)
+                else
+                  +paginationPage(i, get_page_link_func)
+              +paginationEllipsis
+              +paginationPage(pages_count, get_page_link_func)
+            else
+              +paginationPage(1, get_page_link_func)
+              +paginationEllipsis()
+              - var halfOfMPPC = (max_pagination_pages_count - 4) / 2
+              - for (var i = current_page - halfOfMPPC; i <= current_page + halfOfMPPC; i++)
+                  if (i == current_page)
+                    +paginationCurrent(i)
+                  else
+                    +paginationPage(i, get_page_link_func)
+              +paginationEllipsis()
+              +paginationPage(pages_count, get_page_link_func)
+        else
+          - for (var i = 1; i <= pages_count; i++)
+            if (i == current_page)
+              +paginationCurrent(i)
+            else
+              +paginationPage(i, get_page_link_func)
+        +paginationNext(pages_count, current_page, get_page_link_func)
+      else
+        +paginationNext(pages_count, current_page, get_page_link_func)

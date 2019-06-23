@@ -1,0 +1,46 @@
+mixin writePostModal()
+    form.clearfix#createPostForm
+        .previewPostImage.column.row.expanded
+        label.expanded.button.secondary(for="post_photo_upload") Додати фото для обложки
+        input.show-for-sr(type="file", name="postPhotoUpload", accept="image/*")#post_photo_upload
+        button.small.alert.hollow.button(type="button", data-toggle="photoDescription") Підсказка
+        blockquote(style="display: none;", data-toggler, data-animate="hinge-in-from-top hinge-out-from-top")#photoDescription Натиснувши цю кнопку ви можите завантажити зображення з вашого комп'ютера для обложки оголошення 
+            cite <strong>Наприклад: </strong>
+                img.example-image-tiny(src="https://balhash.plot.kz/uploads/cache/stroy-product-gallery-view/product-images/20150320_227187.jpg", alt="", width="150")
+        input(type="text", name="postTitle", placeholder="Заголовок оголошення")#post_title_input
+        button.small.alert.hollow.button(type="button", data-toggle="titleDescription") Підсказка
+        blockquote(style="display: none;", data-toggler, data-animate="hinge-in-from-top hinge-out-from-top")#titleDescription Напишіть або вставте заголовок (назву) оголошення
+            cite <strong>Наприклад: </strong>"Карпати"
+        textarea(name="postDescription", placeholder="Текст оголошення...", rows="10")#post_description_textarea
+        .content-controls.float-right
+            label.button.addPhoto(onclick="addImageTo(1); return false;") Додати фото
+            ol.uploaded-post-content-images
+        button.small.alert.hollow.button(type="button", data-toggle="textareaDescription") Підсказка
+        blockquote(style="display: none;", data-toggler, data-animate="hinge-in-from-top hinge-out-from-top")#textareaDescription Напишіть або вставте текст оголошення
+            cite <strong>Наприклад: </strong>"Карпа́ти — гірська система на сході Центральної Європи, на території України, Угорщини, Чехії, Польщі, Словаччини, Румунії, Сербії та Австрії. Простягається від околиць Братислави до Залізних Воріт на 1 500 км, утворюючи опуклу дугу, що замикає Середньодунайську рівнину."
+        fieldset.size-fieldset
+            legend Виберіть розмір обложки
+            input.post-size-radio(value="small", type="radio", name="postSize")#smallPostSize
+            label(for="smallPostSize") Малий
+            input.post-size-radio(value="normal", type="radio", name="postSize", checked)#normalPostSize
+            label(for="normalPostSize") Нормальний
+            input.post-size-radio(value="large", type="radio", name="postSize")#largePostSize
+            label(for="largePostSize") Великий
+            input.post-size-radio(value="expanded", type="radio", name="postSize")#expandedPostSize
+            label(for="expandedPostSize") Максимальний
+        label Виберіть категорію
+            select.post-tag_name
+              option(value="city") Місто
+              option(value="advertisement") Оголошення
+              option(value="sport") Спорт
+              option(value="culture") Культура
+        .additional-info-block
+            .links-block
+            .authors-block
+        hr
+        button.button(data-toggle="additional_uploading", type="button") Додаткова інформація
+        menu.button-group.dropdown-pane.top.additional-uploading-menu(data-dropdown, data-auto-focus="true", data-hover="true", data-hover-pane="true")#additional_uploading
+            a.expanded.button.addLink(onclick="addLinkInput(1);") Додати посилання
+            a.expanded.button.addAuthor(onclick="addAuthorInput(1);") Додати автора
+
+        input.button.success.float-right.send-create-post-btn(type="submit", value="Створити новину")

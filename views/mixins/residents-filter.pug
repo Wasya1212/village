@@ -1,0 +1,33 @@
+mixin residentsFilter()
+  .column.row
+    form#searchResidentForm
+      h3 Фільтр
+      p
+        input(type="text", name="name.fName", placeholder="ім'я")
+        input(type="text", name="name.mName", placeholder="по батькові")
+        input(type="text", name="name.lName", placeholder="прізвище")
+      p
+        input(type="date", name="birth", placeholder="дата народження")
+      p
+        h5 Судимість
+        input(type="radio", name="conviction", value="true")
+        label Так
+        input(type="radio", name="conviction", value="false")
+        label Ні
+        input(type="radio", name="conviction", value="", checked)
+        label Не важливо
+      p
+        input(type="text", name="study", placeholder="освіта")
+      p
+        input(type="text", name="work", placeholder="робота")
+      p
+        h5 Пенсіонер
+        input(type="radio", name="pensioner", value="true")
+        label Так
+        input(type="radio", name="pensioner", value="false")
+        label Ні
+        input(type="radio", name="pensioner", value="", checked)
+        label Не важливо
+      p
+        input(type="text", name="passport", placeholder="Код паспорту")
+      input.expanded.button.success(type="submit", value="Почати пошук")

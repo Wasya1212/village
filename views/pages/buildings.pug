@@ -1,0 +1,67 @@
+extends ../layout/default
+       
+block common
+    script(src="javascripts/operations.js")
+        
+block content
+  main.expanded.row#main
+    .medium-8.large-6.column
+      h2.building-info-h загальна інформація
+      ul.building-info
+        li
+          strong Село
+          span= building.village
+        li
+          strong Вулиця
+          span= building.street
+        li
+          strong Номер будинку
+          span= building.number
+        li
+          strong Загальна площа
+          span= building.area + building.sgArea + building.businessArea + building.forestArea
+        li
+          strong Площа для сільського господарства
+          span= building.sgArea
+        li
+          strong Площа для бізнесу
+          span= building.businessArea
+        li
+          strong Площа під ліс
+          span= building.forestArea
+        li
+          strong Площа проживання
+          span= building.area
+            
+      h2.building-info-h власники
+      #owners-control
+        .owners-control-panel
+          button.button(type="button", onclick="addOwner('" + building._id + "');") 
+            i.fi-plus
+            span= " Додати"
+          button.button(type="button", onclick="removeOwner('" + building._id + "');") 
+            i.fi-x
+            span= " Відмінити"
+        .owners-list
+          each owner in owners
+            p.owner-box
+              input.ownerCheckbox(type="checkbox", value=owner._id, id="owner_" + owner._id)
+              label(for="owner_" + owner._id)= owner.name.fName + ' ' + owner.name.lName
+              
+    .medium-4.large-6.column
+      article#peoples-control
+        section.peoples-control-panel.button-group
+          a.button.create-post-btn(type="button", href="/residents?add=true&buldId=" + building._id, target="_blank") Оформити жителя
+          a.button(onclick="addResidentFromList('" + building._id + "');") Додати зі списку
+          a.button(onclick="removeResident('" + building._id + "');") Виселити
+          a.button(onclick="replaceResident('" + building._id + "');") Переселити
+        header
+          h2 жителі
+        each person in residents
+          p.owner-box
+            input.residentCheckbox(type="checkbox", value=person._id, id="man_" + person._id)
+            label(for="man_" + person._id)= person.name.fName + ' ' + person.name.lName
+            a.button.toHomeBtn(href="/residents?id=" + person._id) 
+              i.fi-torso
+                      
+  .reveal.large#reveal_modal(data-reveal)

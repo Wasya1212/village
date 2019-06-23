@@ -1,0 +1,43 @@
+extends ../layout/default
+
+block content
+
+    - var residentsCount = 150;
+    
+    main.expanded.row#main
+        //if (residents)
+            a.expanded.button.create-post-btn(type="button", href="/residents?add=true", target="_blank") Оформити жителя
+        if (buildings)
+            a.expanded.button.create-post-btn(type="button", href="/buildings?add=true", target="_blank") Додати будинок
+        .medium-8.large-9.column
+            if (residents)
+                .title-row.expanded.row
+                    .small-1.medium-1.large-1.column №
+                    .small-5.medium-5.large-5.column Ім'я
+                    .small-2.medium-2.large-2.column Дата народження
+                    .small-2.medium-2.large-3.column Ідентифікаційний код
+                    .small-2.medium-2.large-2.column 
+                hr
+                - var i = 1;
+                .residents-section
+                    each resident in residents
+                        +peopleInfoBox(resident, i)
+                        - i++
+            if (buildings)
+                .title-row.expanded.row
+                    .small-1.medium-1.large-1.column №
+                    .small-1.medium-1.large-1.column Номер
+                    .small-4.medium-4.large-4.column Житлова площа
+                    .small-2.medium-2.large-2.column Загальна площа
+                    .small-4.medium-4.large-4.column Адреса
+                hr
+                - var i = 1
+                .buildings-section
+                    each building in buildings
+                        +buildingInfoBox(building, i)
+                        - i++
+        .medium-4.large-3.column
+            if (buildings)
+                +buildingsFilter()
+            if (residents)
+                +residentsFilter()

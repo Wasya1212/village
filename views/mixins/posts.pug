@@ -1,0 +1,35 @@
+mixin smallPost(post)
+    section.small-previewBox.previewBox.columns(id="post_preview_" + post._id)
+        +frontPost(post)
+
+mixin normalPost(post)
+    section.medium-previewBox.previewBox.medium-6.large-4.columns(id="post_preview_" + post._id)
+        +frontPost(post)
+
+mixin largePost(post)
+    section.large-previewBox.previewBox.medium-6.large-8.columns(id="post_preview_" + post._id)
+        +frontPost(post)
+
+mixin expandedPost(post)
+    section.expanded-previewBox.previewBox.column(id="post_preview_" + post._id)
+        +frontPost(post)
+        
+mixin frontPost(post)
+    if (admin)
+        button.button.delete-post-btn(type="button", onclick="deletePost('" + post._id + "');") Видалити пост
+    .preview-picture
+        a(href="/post?id=" + post._id)
+            img(src="uploads/" + post.preview, alt= post.title)
+    .preview-title
+        a(href="/post?id=" + post._id)
+            h5= post.title
+    if (post.size == 'expanded')
+        .post-slised-text
+            p= post.text
+    .post-description.clearfix
+        .post-creation-date
+            span.post-date.float-right= new Date(post.created).getDate() + '.' + (new Date(post.created).getMonth() + 1) + '.' + new Date(post.created).getFullYear()
+            span.post-date-title.float-right Датовано
+        .post-views
+            span.post-views-title.float-left Перегляди
+            span.post-views-count.float-left= Math.floor(Math.random() * 25 + (Math.random() * 7 + 1))

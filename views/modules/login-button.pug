@@ -1,0 +1,13 @@
+a.button.tiny(data-toggle="sign_in") ввійти
+
+.dropdown-pane(data-dropdown, data-auto-focus="true")#sign_in 
+  h5 Вхіт доступний тільки адміністратору сайту 
+  form(action="/login", method="post", novalidate, autocomplete="off")#loginForm
+    p
+      label(for="username_input") Ім'я
+      input(type="text", required, placeholder="Введіть ім'я", name="username", autocomplete="off", value="root")#username_input
+    p
+      label(for="password_input") Пароль
+      input(type="password", required, name="password", placeholder="Введіть пароль", autocomplete="off", value="1111")#password_input
+    p
+      input.button.success(type="submit", value="Підтвердити")

@@ -1,0 +1,4 @@
+section.medium-3.large-2.column.hide-for-small-only#small-posts_container
+  each post in smallPosts
+    if (post.size == 'small')
+      +smallPost(post)

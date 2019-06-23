@@ -1,0 +1,8 @@
+mixin buildingInfoBox(building, index)
+  .expanded.row.building-box(id="building_" + index)
+    .small-1.medium-1.large-1.shrink.column= index
+    .small-1.medium-1.large-1.column
+      a(href="/buildings?id=" + building._id)= building.number
+    .small-4.medium-4.large-4.column= building.area
+    .small-2.medium-2.large-2.column= building.allArea
+    .small-4.medium-4.large-4.column= building.village + " " + building.street

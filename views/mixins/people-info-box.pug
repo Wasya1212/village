@@ -1,0 +1,11 @@
+mixin peopleInfoBox(resident, index)
+  .expanded.row.resident-box(id="resident_" + resident._id)
+    .small-1.medium-1.large-1.shrink.column= index
+    .small-5.medium-5.large-5.column
+      a(href="/residents?id=" + resident._id)= resident.name.fName + ' ' + resident.name.mName + ' ' + resident.name.lName
+    - var birth = new Date(resident.birth);
+    .small-2.medium-2.large-2.column= birth.getDate() + '.' + (birth.getMonth() + 1) + '.' + birth.getFullYear()
+    .small-3.medium-3.large-3.column= resident.passport
+    .small-1.medium-1.large-1.column 
+      a.button.toHomeBtn(href="/buildings?id=" + resident.building) 
+        i.fi-home
