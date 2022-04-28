@@ -11,7 +11,7 @@
   "author": "akira1212",
   "license": "ISC",
   "dependencies": {
-    "async": "^2.4.1",
+    "async": "^2.6.4",
     "bcrypt": "^3.0.0",
     "body-parser": "^1.17.2",
     "connect-flash": "^0.1.1",
